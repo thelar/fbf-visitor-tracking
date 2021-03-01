@@ -124,6 +124,11 @@ class Fbf_Visitor_Tracking {
 
 		$this->loader = new Fbf_Visitor_Tracking_Loader();
 
+        /**
+         * The class responsible for tracking.
+         */
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-fbf-visitor-tracking-track.php';
+
 	}
 
 	/**
