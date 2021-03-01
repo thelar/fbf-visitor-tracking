@@ -71,6 +71,33 @@ class Fbf_Visitor_Tracking_Track
         }
     }
 
+    public static function output($id)
+    {
+        if(isset($id)){
+            $data = [];
+            global $wpdb;
+            $table_name = $wpdb->prefix . 'fbf_visitor_tracking';
+            $query = "SELECT * FROM $table_name WHERE session_cookie = '" . $_GET['id'] . "'";
+            $results = $wpdb->get_results($query);
+            if(!empty($results)){
+                foreach($results as $result){
+                    $data[] = [
+                        'timestamp' => $result->timestamp,
+                        'user_id' => $result->user_id,
+                        'order_id' => $result->order_id,
+                        'customer_phone' => $result->customer_phone,
+                        'customer_email' => $result->customer_email,
+                        'action' => $result->action,
+                        'data' => unserialize($result->data)
+                    ];
+                }
+            }
+            return $data;
+        }else{
+            return false;
+        }
+    }
+
     private static function data($type, $user, $order, $data)
     {
         global $wp_query;
