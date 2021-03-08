@@ -225,7 +225,7 @@ class Fbf_Visitor_Tracking_Track
                 break;
             case 'order':
                 return [
-                    'order' => 'data'
+                    'order_id' => $order->get_id()
                 ];
                 break;
             case 'product-search':
